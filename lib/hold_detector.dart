@@ -12,7 +12,7 @@ part of 'package:holding_gesture/holding_gesture.dart';
 ///
 /// Material design applications typically react to touches with ink splash
 /// effects. The [InkWell] class implements this effect and can be used in place
-/// of a [GestureDetector] for handling taps.
+/// or with a [GestureDetector] for handling taps.
 ///
 /// The `onTap` override won't work when the `child` has a `onPressed`
 /// or similar property, so you might want to pass the same method

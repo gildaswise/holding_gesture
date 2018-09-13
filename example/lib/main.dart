@@ -42,6 +42,7 @@ class _MyAppState extends State<MyApp> {
         ),
         floatingActionButton: HoldDetector(
           onHold: _incrementCounter,
+          holdTimeout: Duration(milliseconds: 200),
           enableHapticFeedback: true,
           child: FloatingActionButton(
             child: Icon(Icons.add),
