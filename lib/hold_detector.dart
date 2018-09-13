@@ -5,8 +5,8 @@ part of 'package:holding_gesture/holding_gesture.dart';
 /// If this widget has a child, it defers to that child for its sizing behavior.
 /// If it does not have a child, it grows to fit the parent instead.
 ///
-/// It defaults to repeating an action every 200ms (customizable), but for now
-/// it always waits 200ms to start repeating the [onHold] callback.
+/// It defaults to repeating an action every 300ms (customizable), but for now
+/// it always waits 300ms to start repeating the [onHold] callback.
 ///
 /// See <http://flutter.io/gestures/> for additional information.
 ///
@@ -47,6 +47,7 @@ class HoldDetector extends StatelessWidget {
   final Duration holdTimeout;
 
   final HitTestBehavior behavior;
+  final bool enableHapticFeedback;
   final bool excludeFromSemantics;
 
   final Widget child;
@@ -57,6 +58,7 @@ class HoldDetector extends StatelessWidget {
     this.onCancel,
     this.holdTimeout,
     this.behavior = HitTestBehavior.translucent,
+    this.enableHapticFeedback = false,
     this.excludeFromSemantics = false,
     @required this.onHold,
     @required this.child,
@@ -79,6 +81,7 @@ class HoldDetector extends StatelessWidget {
             GestureRecognizerFactoryWithHandlers<HoldGestureRecognizer>(
           () => HoldGestureRecognizer(
                 timeout: this.holdTimeout,
+                enableHapticFeedback: this.enableHapticFeedback,
                 debugOwner: this,
               ),
           (instance) => instance

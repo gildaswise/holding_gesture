@@ -13,7 +13,8 @@ typedef void GestureHoldCallback();
 ///  * [TapGestureRecognizer], which uses this signature in one of its callbacks.
 typedef void GestureHoldCancelCallback();
 
-final Duration kHoldTimeout = const Duration(milliseconds: 200);
+const int kHoldMilliseconds = 300;
+const Duration kHoldTimeout = const Duration(milliseconds: kHoldMilliseconds);
 
 /// Recognizes when the user has pressed down at the same location for a long
 /// period of time. Its waiting duration defaults to [kHoldTimeout].
@@ -22,11 +23,16 @@ class HoldGestureRecognizer extends PrimaryPointerGestureRecognizer {
   ///
   /// Consider assigning the [onHold] callback after creating this object.
   HoldGestureRecognizer({
-    this.timeout = const Duration(milliseconds: 200),
+    this.timeout = kHoldTimeout,
+    this.enableHapticFeedback = false,
     Object debugOwner,
   }) : super(deadline: kHoldTimeout, debugOwner: debugOwner);
 
+  /// The periodic time for each tick
   final Duration timeout;
+
+  /// Whether or not to get a haptic feedback on each tick
+  final bool enableHapticFeedback;
 
   /// Called when a hold is recognized.
   GestureHoldCallback onHold;
@@ -42,7 +48,10 @@ class HoldGestureRecognizer extends PrimaryPointerGestureRecognizer {
     resolve(GestureDisposition.accepted);
     if (onHold != null) {
       _timer = Timer.periodic(timeout ?? kHoldTimeout, (timer) {
-        if (timer.isActive) invokeCallback<void>('onHold', onHold);
+        if (timer.isActive) {
+          if (this.enableHapticFeedback) HapticFeedback.selectionClick();
+          invokeCallback<void>('onHold', onHold);
+        }
       });
     }
   }
