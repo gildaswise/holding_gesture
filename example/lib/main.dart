@@ -39,9 +39,9 @@ class _MyAppState extends State<MyApp> {
         ),
         floatingActionButton: HoldDetector(
           onHold: _incrementCounter,
-          // highlightShape: BoxShape.circle,
           child: FloatingActionButton(
             child: Icon(Icons.add),
+            onPressed: _incrementCounter,
           ),
         ),
       ),

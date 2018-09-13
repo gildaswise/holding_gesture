@@ -14,6 +14,20 @@ part of 'package:holding_gesture/holding_gesture.dart';
 /// effects. The [InkWell] class implements this effect and can be used in place
 /// of a [GestureDetector] for handling taps.
 ///
+/// The `onTap` override won't work when the `child` has a `onPressed`
+/// or similar property, so you might want to pass the same method
+/// before, like this:
+///
+/// ```dart
+/// HoldDetector(
+///   onHold: _incrementCounter,
+///   child: FloatingActionButton(
+///     child: Icon(Icons.add),
+///     onPressed: _incrementCounter,
+///   ),
+/// )
+/// ```
+///
 /// This example makes the counter keep while holding the button:
 ///
 /// ```dart
