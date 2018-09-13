@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'dart:async';
-
-import 'package:flutter/services.dart';
 import 'package:holding_gesture/holding_gesture.dart';
 
 void main() => runApp(MyApp());
