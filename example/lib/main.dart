@@ -32,9 +32,17 @@ class _MyAppState extends State<MyApp> {
           title: const Text('holding_gesture'),
         ),
         body: Center(
-          child: Text(
-            '$_counter',
-            style: Theme.of(context).textTheme.title,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text(
+                'You have pushed (or held) the button this many times:',
+              ),
+              Text(
+                '$_counter',
+                style: Theme.of(context).textTheme.display1,
+              ),
+            ],
           ),
         ),
         floatingActionButton: HoldDetector(
