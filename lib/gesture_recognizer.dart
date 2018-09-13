@@ -13,7 +13,7 @@ typedef void GestureHoldCallback();
 ///  * [TapGestureRecognizer], which uses this signature in one of its callbacks.
 typedef void GestureHoldCancelCallback();
 
-final Duration kHoldTimeout = Duration(milliseconds: 200);
+final Duration kHoldTimeout = const Duration(milliseconds: 200);
 
 /// Recognizes when the user has pressed down at the same location for a long
 /// period of time. Its waiting duration defaults to [kHoldTimeout].
@@ -21,8 +21,10 @@ class HoldGestureRecognizer extends PrimaryPointerGestureRecognizer {
   /// Creates a long-press gesture recognizer.
   ///
   /// Consider assigning the [onHold] callback after creating this object.
-  HoldGestureRecognizer({this.timeout, Object debugOwner})
-      : super(deadline: kHoldTimeout, debugOwner: debugOwner);
+  HoldGestureRecognizer({
+    this.timeout = const Duration(milliseconds: 200),
+    Object debugOwner,
+  }) : super(deadline: kHoldTimeout, debugOwner: debugOwner);
 
   final Duration timeout;
 

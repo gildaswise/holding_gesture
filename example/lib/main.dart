@@ -37,9 +37,9 @@ class _MyAppState extends State<MyApp> {
         body: Center(
           child: Text('$_counter'),
         ),
-        floatingActionButton: HoldableInkWell(
+        floatingActionButton: HoldDetector(
           onHold: _incrementCounter,
-          highlightShape: BoxShape.circle,
+          // highlightShape: BoxShape.circle,
           child: FloatingActionButton(
             child: Icon(Icons.add),
           ),

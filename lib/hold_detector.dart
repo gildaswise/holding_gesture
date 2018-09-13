@@ -42,7 +42,7 @@ class HoldDetector extends StatelessWidget {
     this.onTap,
     this.onCancel,
     this.holdTimeout,
-    this.behavior = HitTestBehavior.opaque,
+    this.behavior = HitTestBehavior.translucent,
     this.excludeFromSemantics = false,
     @required this.onHold,
     @required this.child,
@@ -59,7 +59,7 @@ class HoldDetector extends StatelessWidget {
         TapGestureRecognizer:
             GestureRecognizerFactoryWithHandlers<TapGestureRecognizer>(
           () => TapGestureRecognizer(debugOwner: this),
-          (instance) => instance..onTap = this.onTap,
+          (instance) => instance..onTap = this.onTap ?? this.onHold,
         ),
         HoldGestureRecognizer:
             GestureRecognizerFactoryWithHandlers<HoldGestureRecognizer>(
