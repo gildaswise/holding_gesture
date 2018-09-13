@@ -19,13 +19,17 @@ Widget build(BuildContext context) {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
-              'You have pushed (or held) the button this many times:',
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Text(
+                'You have pushed (or held) the button this many times:',
+                textAlign: TextAlign.center,
+              ),
             ),
             Text(
-                '$_counter',
-                style: Theme.of(context).textTheme.display1,
-              ),
+              '$_counter',
+              style: Theme.of(context).textTheme.display1,
+            ),
           ],
         ),
       ),
