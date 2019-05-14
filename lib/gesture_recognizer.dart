@@ -87,5 +87,3 @@ class HoldGestureRecognizer extends PrimaryPointerGestureRecognizer {
   @override
   String get debugDescription => 'hold';
 }
-
-void resolve(accepted) {}
