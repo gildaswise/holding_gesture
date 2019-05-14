@@ -40,6 +40,9 @@ class HoldGestureRecognizer extends PrimaryPointerGestureRecognizer {
   /// Called when the hold is canceled.
   GestureHoldCancelCallback onCancel;
 
+  /// Used to figure out when to call parent's stopTrackingPointer method
+  bool pointerUp = false;
+
   ///
   Timer _timer;
 
@@ -57,10 +60,24 @@ class HoldGestureRecognizer extends PrimaryPointerGestureRecognizer {
   }
 
   @override
+  void stopTrackingPointer(int pointer) {
+    if (pointerUp) {
+      super.stopTrackingPointer(pointer);
+      pointerUp = false;
+    }
+  }
+
+  @override
+  void resolve(GestureDisposition disposition) {
+    super.resolve(disposition);
+  }
+
+  @override
   void handlePrimaryPointer(PointerEvent event) {
     if (event is PointerUpEvent ||
         event is PointerCancelEvent ||
         event is PointerRemovedEvent) {
+      pointerUp = true;
       if (onCancel != null) invokeCallback<void>('onCancel', onCancel);
       _timer?.cancel();
       resolve(GestureDisposition.rejected);
