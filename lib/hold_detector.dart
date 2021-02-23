@@ -31,7 +31,7 @@ part of 'package:holding_gesture/holding_gesture.dart';
 /// This example makes the counter keep while holding the button:
 ///
 /// ```dart
-/// new HoldDetector(
+/// HoldDetector(
 ///   onHold: () {
 ///     setState(() { _counter += 1; });
 ///   },
@@ -40,11 +40,11 @@ part of 'package:holding_gesture/holding_gesture.dart';
 /// ```
 ///
 class HoldDetector extends StatelessWidget {
-  final GestureTapCallback onTap;
+  final GestureTapCallback? onTap;
   final GestureHoldCallback onHold;
-  final GestureHoldCancelCallback onCancel;
+  final GestureHoldCancelCallback? onCancel;
 
-  final Duration holdTimeout;
+  final Duration? holdTimeout;
 
   final HitTestBehavior behavior;
   final bool enableHapticFeedback;
@@ -53,18 +53,16 @@ class HoldDetector extends StatelessWidget {
   final Widget child;
 
   const HoldDetector({
-    Key key,
+    Key? key,
     this.onTap,
     this.onCancel,
     this.holdTimeout,
     this.behavior = HitTestBehavior.translucent,
     this.enableHapticFeedback = false,
     this.excludeFromSemantics = false,
-    @required this.onHold,
-    @required this.child,
-  })  : assert(onHold != null),
-        assert(child != null),
-        super(key: key);
+    required this.onHold,
+    required this.child,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -80,10 +78,10 @@ class HoldDetector extends StatelessWidget {
         HoldGestureRecognizer:
             GestureRecognizerFactoryWithHandlers<HoldGestureRecognizer>(
           () => HoldGestureRecognizer(
-                timeout: this.holdTimeout,
-                enableHapticFeedback: this.enableHapticFeedback,
-                debugOwner: this,
-              ),
+            timeout: this.holdTimeout,
+            enableHapticFeedback: this.enableHapticFeedback,
+            debugOwner: this,
+          ),
           (instance) => instance
             ..onHold = this.onHold
             ..onCancel = this.onCancel,

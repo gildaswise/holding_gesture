@@ -1,12 +1,11 @@
 name: holding_gesture_example
 description: Demonstrates how to use the holding_gesture plugin.
-author: Gildásio Filho <gildasiogx@gmail.com>
 homepage: https://github.com/gildaswise/holding_gesture
 
 version: 0.0.2+2
 
 environment:
-  sdk: ">=2.0.0-dev.68.0 <3.0.0"
+  sdk: ">=2.12.0-0 <3.0.0"
 
 dependencies:
   flutter:
@@ -16,7 +15,6 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
   holding_gesture:
     path: ../
 

@@ -25,26 +25,26 @@ class HoldGestureRecognizer extends PrimaryPointerGestureRecognizer {
   HoldGestureRecognizer({
     this.timeout = kHoldTimeout,
     this.enableHapticFeedback = false,
-    Object debugOwner,
+    Object? debugOwner,
   }) : super(deadline: kHoldTimeout, debugOwner: debugOwner);
 
   /// The periodic time for each tick
-  final Duration timeout;
+  final Duration? timeout;
 
   /// Whether or not to get a haptic feedback on each tick
   final bool enableHapticFeedback;
 
   /// Called when a hold is recognized.
-  GestureHoldCallback onHold;
+  GestureHoldCallback? onHold;
 
   /// Called when the hold is canceled.
-  GestureHoldCancelCallback onCancel;
+  GestureHoldCancelCallback? onCancel;
 
   /// Used to figure out when to call parent's stopTrackingPointer method
   bool pointerUp = false;
 
   ///
-  Timer _timer;
+  Timer? _timer;
 
   @override
   void didExceedDeadline() {
@@ -53,7 +53,7 @@ class HoldGestureRecognizer extends PrimaryPointerGestureRecognizer {
       _timer = Timer.periodic(timeout ?? kHoldTimeout, (timer) {
         if (timer.isActive) {
           if (this.enableHapticFeedback) HapticFeedback.selectionClick();
-          invokeCallback<void>('onHold', onHold);
+          invokeCallback<void>('onHold', onHold!);
         }
       });
     }
@@ -78,7 +78,7 @@ class HoldGestureRecognizer extends PrimaryPointerGestureRecognizer {
         event is PointerCancelEvent ||
         event is PointerRemovedEvent) {
       pointerUp = true;
-      if (onCancel != null) invokeCallback<void>('onCancel', onCancel);
+      if (onCancel != null) invokeCallback<void>('onCancel', onCancel!);
       _timer?.cancel();
       resolve(GestureDisposition.rejected);
     }
