@@ -1,11 +1,10 @@
 name: holding_gesture
 description: A customized GestureDetector that acts on holding a determined Widget.
-version: 0.0.4
-author: Gildásio Filho <gildasiogx@gmail.com>
+version: 1.0.0-dev
 homepage: https://github.com/gildaswise/holding_gesture
 
 environment:
-  sdk: '>=2.12.0-0 <3.0.0'
+  sdk: '>=2.12.0-259.8.beta <3.0.0'
 
 dependencies:
   flutter:
