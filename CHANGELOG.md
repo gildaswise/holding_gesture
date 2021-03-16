@@ -1,3 +1,7 @@
+## 1.0.0
+
+* Bumped to stable release.
+
 ## [1.0.0-dev] - 2021-02-23
 
 * Updated to support null-safety
