@@ -1,6 +1,6 @@
 name: holding_gesture
 description: A customized GestureDetector that acts on holding a determined Widget.
-version: 1.0.0
+version: 1.1.0
 homepage: https://github.com/gildaswise/holding_gesture
 
 environment:
