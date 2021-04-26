@@ -10,11 +10,20 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   int _counter = 0;
+  bool _isLoading = false;
 
   void _incrementCounter() {
     if (mounted) {
       setState(() {
         _counter += 1;
+      });
+    }
+  }
+
+  void _updateLoading(bool value) {
+    if (mounted) {
+      setState(() {
+        _isLoading = value;
       });
     }
   }
@@ -45,15 +54,42 @@ class _MyAppState extends State<MyApp> {
             ],
           ),
         ),
-        floatingActionButton: HoldDetector(
-          onHold: _incrementCounter,
-          holdTimeout: Duration(milliseconds: 200),
-          enableHapticFeedback: true,
-          child: FloatingActionButton(
-            child: Icon(Icons.add),
-            onPressed: _incrementCounter,
+        bottomNavigationBar: _isLoading ? LinearProgressIndicator() : null,
+        persistentFooterButtons: [
+          HoldDetector(
+            onHold: _incrementCounter,
+            holdTimeout: Duration(milliseconds: 200),
+            enableHapticFeedback: true,
+            child: ElevatedButton(
+              onPressed: _incrementCounter,
+              child: Text("onHold"),
+            ),
           ),
-        ),
+          HoldTimeoutDetector(
+            onTimeout: () {
+              _incrementCounter();
+              _updateLoading(false);
+            },
+            onTimerInitiated: () => _updateLoading(true),
+            onCancel: () => _updateLoading(false),
+            holdTimeout: Duration(milliseconds: 3000),
+            enableHapticFeedback: true,
+            child: ElevatedButton.icon(
+              onPressed: () {},
+              label: Text("onTimeout"),
+              icon: _isLoading
+                  ? SizedBox(
+                      width: 16,
+                      height: 16,
+                      child: CircularProgressIndicator(
+                        strokeWidth: 2,
+                        valueColor: AlwaysStoppedAnimation(Colors.white),
+                      ),
+                    )
+                  : Icon(Icons.timer_3),
+            ),
+          ),
+        ],
       ),
     );
   }
