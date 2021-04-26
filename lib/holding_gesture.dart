@@ -9,4 +9,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 part 'hold_detector.dart';
-part 'gesture_recognizer.dart';
+part 'hold_timeout_detector.dart';
+part 'hold_gesture_recognizer.dart';
+part 'hold_timeout_gesture_recognizer.dart';
