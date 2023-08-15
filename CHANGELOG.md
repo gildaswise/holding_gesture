@@ -1,3 +1,7 @@
+## 1.2.0
+
+* Updates Flutter and Dart requirements
+
 ## 1.1.0
 
 * Added `HoldTimeoutGestureRecognizer` and `HoldTimeoutDetector`.
